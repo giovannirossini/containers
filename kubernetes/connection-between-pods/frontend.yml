@@ -1,0 +1,20 @@
+apiVersion: extensions/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: deployment
+  labels:
+    name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: nginx
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP

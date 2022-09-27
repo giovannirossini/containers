@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: NetworkPolicy
+metadata:
+  name: egress-to-backend
+  namespace: developmen
+spec:
+  egress:
+  - ports:
+    - port: 8433
+      protocol: TCP
+    to:
+    - podSelector:
+        matchLabels:
+          name: backend
+  podSelector:
+    matchLabels:
+      name: frontend
+  policyTypes:
+  - Ingress
+  - Egress
